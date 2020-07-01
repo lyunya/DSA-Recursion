@@ -1,12 +1,18 @@
 // #1 counting sheep
-function countSheep(num) {
-  if (num === 0){
-    return "All Sheep jumped over the fence"
-  }
-  console.log(`${num}: Another sheep jumps over the fence`)
-  countSheep(num - 1)
+function howManySheeps(int) {
+    // base case
+    if (int === 0) {
+        console.log('All sheep jumped over the fence')
+        return;
+    }
+    // general case
+    if (int > 0) {
+        console.log(`${int}: Another sheep jumped over the fence`)
+        howManySheeps(int - 1); // recursive call
+    }
 }
-console.log(countSheep(4))
+
+howManySheeps(5);
 
 //#2 Power Calculator
 function powerCalculator(base, exponent){
@@ -20,17 +26,17 @@ function powerCalculator(base, exponent){
   return base * powerCalculator(base, exponent - 1)
 }
 
-console.log(powerCalculator(3, 3))
+console.log(powerCalculator(3, 3), 'powercalc')
 
 //#3 Reverse String
-function reverseString(str) {
-  if (str === "")
-    return "";
-  else
-    return reverseString(str.substr(1)) + str.charAt(0);
-}
+reverseString = (str) =>{
+  if(str === ''){
+    return '';
+  }
 
-console.log(reverseString('hello'))
+  return reverseString(str.slice(1)) + str.charAt(0)
+}
+console.log(reverseString('testThisString'))
 
 //#4 nth Triangular Number
 function triangularNum(num){
@@ -40,7 +46,36 @@ function triangularNum(num){
 
   return num + triangularNum(num - 1)
 }
-console.log(triangularNum(5))
+console.log(triangularNum(5), 'triang num')
+
+//#5 string splitter
+let splitter = function(str, separator) {
+  if (!str) {
+    return ''
+  }
+  let curr = str[0]
+  if (curr === separator) {
+    curr = ''
+  }
+  return curr + splitter(str.slice(1), separator)
+}
+
+console.log(splitter('02/20/2020', '/'))
+
+//#6 fibonacci
+function fibonacci(num) {
+    // Base case
+    if (num <= 2) {
+        switch (num) {
+            case 1: case 2: return 1;
+            case 0: return 0;   
+           default: throw new Error("Please insert a positive integer");
+        }  // End switch statement
+    }
+    return fibonacci(num - 1) + fibonacci(num - 2);
+}
+
+console.log(fibonacci(6), 'fibonacci')
 
 // #7 factorial
 
@@ -51,4 +86,4 @@ function factorial(num){
 
   return num * factorial(num - 1)
 }
-console.log(factorial(5))
+console.log(factorial(5), 'factorial')
